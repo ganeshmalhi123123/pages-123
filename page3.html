@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Background Video</title>
+    <style>
+        /* Set the page background to pink */
+        body {
+            background-color: #ff69b4; /* Pink background */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            text-align: center;
+        }
+
+        /* Center the content in a container */
+        .container {
+            text-align: center;
+        }
+
+        /* Video container style */
+        .video-container {
+            margin-top: 20px;
+            border: 5px solid white;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Styling for the heading */
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for the "Open New Page" button */
+        #open-new-page-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #open-new-page-btn:hover {
+            background-color: #e55347;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enjoy the Video! 💖</h1>
+
+        <!-- You can replace the YouTube video URL with any video you'd like -->
+        <div class="video-container">
+            <iframe 
+                width="560" 
+                height="315" 
+                src="WhatsApp Video 2025-06-24 at 12.04.44 PM.mp4" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Button to open a new page -->
+        <div id="new-page-container" style="display: none;">
+            <button id="open-new-page-btn">Go to New Page</button>
+        </div>
+    </div>
+
+    <script>
+        // This script shows the "Go to New Page" button after a short delay
+        setTimeout(function() {
+            document.getElementById("new-page-container").style.display = "block";
+        }, 5000); // Show button after 5 seconds
+
+        // Event listener for the "Go to New Page" button
+        document.getElementById("open-new-page-btn").addEventListener("click", function() {
+            window.open("https://example.com", "_blank"); // Opens a new tab with the specified URL
+        });
+    </script>
+</body>
+</html>
