@@ -27,9 +27,9 @@
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 2em;
             color: white;
-            padding: 120px;
+            padding: 160px;
         }
 
         #funButton {
@@ -45,19 +45,21 @@
             cursor: pointer;
             transition: top 0.3s ease, left 0.3s ease;
             z-index: 2;
-            width: 70px; height: 40px;
+            width: 70px;
+            height: 40px;
         }
 
         .btn2 {
             position: absolute;
-            top: 37%;
-            left: 50%;
+            top: 38%;
+            left: 60%;
             background-color: yellow;
             color: black;
             border: none;
             border-radius: 50px;
             font-size: 1.1em;
-            width: 70px; height: 40px;
+            width: 70px;
+            height: 40px;
         }
 
         @keyframes fall {
@@ -103,25 +105,25 @@
         setInterval(createHeart, 300);
     </script>
     <center>
-    <h1>Do you Like me</h1>
+        <h1>Do you Like me</h1>
 
-    <button id="funButton">No</button>
-    <a href="..."><button class="btn2">Yes</button></a>
+        <button id="funButton">No</button>
+        <a href="..."><button class="btn2">Yes</button></a>
 
-    <script>
-        const button = document.getElementById("funButton");
+        <script>
+            const button = document.getElementById("funButton");
 
-        button.addEventListener("click", () => {
-            const maxX = window.innerWidth - button.offsetWidth;
-            const maxY = window.innerHeight - button.offsetHeight;
+            button.addEventListener("click", () => {
+                const maxX = window.innerWidth - button.offsetWidth;
+                const maxY = window.innerHeight - button.offsetHeight;
 
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY);
 
-            button.style.left = `${randomX}px`;
-            button.style.top = `${randomY}px`;
-        });
-    </script>
+                button.style.left = `${randomX}px`;
+                button.style.top = `${randomY}px`;
+            });
+        </script>
 
     </center>
 </body>
