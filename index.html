@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falling Hearts</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: pink;
+            overflow: hidden;
+            position: relative;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url(Heart_Shape_PNG_Clipart-3166.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: fall 5s linear infinite, rotate 3s linear infinite;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            padding: 120px;
+        }
+
+        #funButton {
+            position: absolute;
+            top: 40%;
+            left: 45%;
+            transform: translate(-50%, -50%);
+            background-color: yellow;
+            color: black;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: top 0.3s ease, left 0.3s ease;
+            z-index: 2;
+            width: 70px; height: 40px;
+        }
+
+        .btn2 {
+            position: absolute;
+            top: 37%;
+            left: 50%;
+            background-color: yellow;
+            color: black;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            width: 70px; height: 40px;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -50px;
+                left: calc(100% * random());
+                opacity: 1;
+            }
+
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        function createHeart() {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "%";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+    <center>
+    <h1>Do you Like me</h1>
+
+    <button id="funButton">No</button>
+    <a href="..."><button class="btn2">Yes</button></a>
+
+    <script>
+        const button = document.getElementById("funButton");
+
+        button.addEventListener("click", () => {
+            const maxX = window.innerWidth - button.offsetWidth;
+            const maxY = window.innerHeight - button.offsetHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+        });
+    </script>
+
+    </center>
+</body>
+
+</html>
