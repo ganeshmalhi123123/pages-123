@@ -1,130 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Falling Hearts</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background-color: pink;
-            overflow: hidden;
-            position: relative;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <title>Do You Love Me?</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: pink;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
 
-        .heart {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-image: url(picture_1.png);
-            background-size: contain;
-            background-repeat: no-repeat;
-            animation: fall 5s linear infinite, rotate 3s linear infinite;
-        }
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 20px;
+      animation: fall 10s linear infinite;
+    }
 
-        h1 {
-            font-size: 3em;
-            color: white;
-            padding: 160px;
-        }
+    @keyframes fall {
+      0% {
+        top: -10%;
+        transform: translateX(0);
+      }
+      100% {
+        top: 110%;
+        transform: translateX(100px);
+      }
+    }
 
-        #funButton {
-            position: absolute;
-            top: 40%;
-            left: 45%;
-            transform: translate(-50%, -50%);
-            background-color: yellow;
-            color: black;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: top 0.3s ease, left 0.3s ease;
-            z-index: 2;
-            width: 70px;
-            height: 40px;
-        }
+    .center-box {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+    }
 
-        .btn2 {
-            position: absolute;
-            top: 38%;
-            left: 60%;
-            background-color: yellow;
-            color: black;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1em;
-            width: 70px;
-            height: 40px;
-        }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #ff69b4;
+      color: white;
+      transition: all 0.3s ease;
+    }
 
-        @keyframes fall {
-            0% {
-                top: -50px;
-                left: calc(100% * random());
-                opacity: 1;
-            }
-
-            100% {
-                top: 100%;
-                opacity: 0;
-            }
-        }
-
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
-
 <body>
 
-    <script>
-        function createHeart() {
-            let heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.style.left = Math.random() * 100 + "%";
-            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
-            document.body.appendChild(heart);
+  <!-- Falling hearts -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+      document.body.appendChild(heart);
 
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        }
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
 
-        setInterval(createHeart, 300);
-    </script>
-        <h1>Do you Like me</h1>
-    <center>
-        <button id="funButton">No</button>
-        <a href="page1.html"><button class="btn2">Yes</button></a>
+    setInterval(createHeart, 300);
+  </script>
 
-        <script>
-            const button = document.getElementById("funButton");
+  <!-- Main interaction div -->
+  <div class="center-box" id="main-box">
+    <div id="question-1">
+      <h1>Do you love me?</h1>
+      <button onclick="handleNoClick()">No</button>
+      <button id="yesButton" onclick="showSecondQuestion()">Yes</button>
+    </div>
 
-            button.addEventListener("click", () => {
-                const maxX = window.innerWidth - button.offsetWidth;
-                const maxY = window.innerHeight - button.offsetHeight;
+    <div id="question-2" class="hidden">
+      <h1>Do you remember the day we talked?</h1>
+      <button onclick="showFinalMessage()">Yes</button>
+      <button onclick="handleSecondNoClick()">No</button>
+    </div>
 
-                const randomX = Math.floor(Math.random() * maxX);
-                const randomY = Math.floor(Math.random() * maxY);
+    <div id="final-message" class="hidden">
+      <h2>That was the beginning of my happiest journey 💖</h2>
+      <br>
+      <button onclick="goToNextPage()">Continue</button>
+    </div>
+  </div>
 
-                button.style.left = `${randomX}px`;
-                button.style.top = `${randomY}px`;
-            });
-        </script>
+  <script>
+    let noClickCount = 0;
+    let secondNoClickCount = 0;
 
-    </center>
+    function handleNoClick() {
+      const yesBtn = document.getElementById('yesButton');
+      noClickCount++;
+      let scale = 1 + 0.2 * noClickCount;
+      yesBtn.style.transform = `scale(${scale})`;
+    }
+
+    function showSecondQuestion() {
+      document.getElementById('question-1').classList.add('hidden');
+      document.getElementById('question-2').classList.remove('hidden');
+    }
+
+    function showFinalMessage() {
+      document.getElementById('question-2').classList.add('hidden');
+      document.getElementById('final-message').classList.remove('hidden');
+    }
+
+    function handleSecondNoClick() {
+      const yesButtons = document.querySelectorAll('#question-2 button');
+      secondNoClickCount++;
+      let scale = 1 + 0.2 * secondNoClickCount;
+      yesButtons[0].style.transform = `scale(${scale})`;
+    }
+
+    function goToNextPage() {
+      window.location.href = 'page2.html';
+    }
+  </script>
+
 </body>
-
 </html>
